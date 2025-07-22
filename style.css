@@ -1,0 +1,354 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #3a0ca3 40%, #7209b7 80%, #f72585 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.decorations {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  background: rgba(30, 30, 40, 0.96);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  padding: 40px 32px 32px 32px;
+  max-width: 700px;
+  width: 95%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #ffe082;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #000a;
+}
+
+.wish {
+  font-size: 1.2rem;
+  color: #fffbe7;
+  margin-bottom: 32px;
+  font-weight: 500;
+  text-shadow: 0 1px 4px #0008;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(255, 224, 130, 0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 3px solid #232526;
+  background: #18181c;
+}
+
+.gallery img:hover {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 8px 32px rgba(255, 224, 130, 0.25);
+  border-color: #ffe082;
+}
+
+/* Cake and Candle Styles */
+.cake-section {
+  margin-bottom: 24px;
+}
+.cake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+#cake-svg {
+  display: block;
+  margin: 0 auto;
+  background: none;
+}
+.candles .flame {
+  opacity: 1;
+  transform-origin: center bottom;
+  animation: flame-flicker 0.5s infinite alternate;
+}
+@keyframes flame-flicker {
+  0% { transform: scaleY(1) scaleX(1); }
+  100% { transform: scaleY(1.2) scaleX(0.9) translateY(-2px); }
+}
+.candles .flame.extinguished {
+  opacity: 0;
+  transition: opacity 0.7s;
+}
+#blow-text {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #ffe082;
+  font-weight: 600;
+  letter-spacing: 1px;
+  animation: pulse 1.2s infinite alternate;
+  text-shadow: 0 1px 4px #0008;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Hide elements */
+.hidden {
+  display: none !important;
+}
+
+/* Ensure only cake is visible at first */
+#birthday-message {
+  display: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s, transform 1s;
+}
+#birthday-message.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gallery Drop Animation */
+.animated-gallery img {
+  opacity: 0;
+  transform: translateY(-120px) scale(0.95);
+  animation: gallery-drop-in 1s cubic-bezier(.23,1.5,.32,1) forwards;
+}
+.animated-gallery img.animated {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+@keyframes gallery-drop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px) scale(1.05);
+  }
+  80% {
+    transform: translateY(-8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Decorations (Confetti/Balloons) */
+.confetti {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: confetti-fall 2.5s linear forwards;
+  z-index: 1;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-30px) scale(1); }
+  100% { transform: translateY(100vh) scale(1.2) rotate(360deg); opacity: 0.7; }
+}
+/* Balloons: More colorful and festive */
+.balloon {
+  position: absolute;
+  width: 36px;
+  height: 50px;
+  border-radius: 18px 18px 18px 18px / 25px 25px 25px 25px;
+  background: var(--balloon-color, linear-gradient(135deg, #ff4e50 60%, #f9d423 100%));
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  border: 2px solid #fffbe7;
+  z-index: 2;
+  left: 0;
+  bottom: -60px;
+  animation: balloon-float-up 8s linear forwards;
+}
+@keyframes balloon-float-up {
+  0% { transform: translateY(0); opacity: 0.85; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0.7; }
+}
+.balloon::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 2px;
+  height: 18px;
+  background: #bdbdbd;
+  border-radius: 1px;
+  transform: translateX(-50%);
+}
+
+@keyframes balloon-float {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-40px) scale(1.05); }
+}
+
+/* Decorations: Add sparkles */
+.sparkle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.85;
+  animation: sparkle-fade 1.2s linear forwards;
+}
+.sparkle svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@keyframes sparkle-fade {
+  0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+  100% { opacity: 0; transform: scale(0.7) rotate(40deg); }
+}
+
+.decorations {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.confetti {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: confetti-fall 2.5s linear forwards;
+  z-index: 1;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-30px) scale(1); }
+  100% { transform: translateY(100vh) scale(1.2) rotate(360deg); opacity: 0.7; }
+}
+
+.animated-gallery {
+  display: none;
+}
+.animated-gallery.show {
+  display: grid;
+}
+
+.friendship-gift-section {
+  margin: 38px auto 0 auto;
+  padding: 24px 18px 18px 18px;
+  max-width: 500px;
+  background: rgba(255,255,255,0.10);
+  border: 2px solid #ffe082;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(247,37,133,0.10);
+  text-align: center;
+}
+.friendship-quote {
+  font-size: 1.18rem;
+  color: #ffe082;
+  font-style: italic;
+  margin-bottom: 16px;
+  text-shadow: 0 1px 8px #000a;
+}
+.friendship-quote span {
+  display: block;
+  font-size: 1rem;
+  color: #ffd166;
+  margin-top: 6px;
+}
+.gift-message {
+  font-size: 1.22rem;
+  color: #f72585;
+  font-weight: bold;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 8px #fff8;
+}
+
+.password-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(20, 18, 34, 0.96);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.password-box {
+  background: rgba(40, 40, 60, 0.98);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #000a;
+  padding: 36px 32px 28px 32px;
+  text-align: center;
+  min-width: 260px;
+}
+.password-box h2 {
+  color: #ffe082;
+  margin-bottom: 18px;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+#password-input {
+  padding: 10px 14px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ffd166;
+  outline: none;
+  margin-bottom: 12px;
+  width: 90px;
+  text-align: center;
+  background: #23233a;
+  color: #ffe082;
+}
+#password-submit {
+  padding: 8px 22px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: none;
+  background: #f72585;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background 0.2s;
+}
+#password-submit:hover {
+  background: #7209b7;
+}
+.password-error {
+  color: #ff4e50;
+  margin-top: 10px;
+  font-size: 1rem;
+  min-height: 22px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 18px 4px 18px 4px;
+  }
+  .gallery img {
+    height: 110px;
+  }
+} 

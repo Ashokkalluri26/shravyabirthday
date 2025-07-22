@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="password-overlay" class="password-overlay">
+    <div class="password-box">
+      <h2>Enter Date & Month to Access</h2>
+      <input type="password" id="password-input" maxlength="4" placeholder="DDMM">
+      <button id="password-submit">Enter</button>
+      <div id="password-error" class="password-error"></div>
+    </div>
+  </div>
+  <div class="decorations" id="decorations"></div>
+  <div class="container">
+    <div class="cake-section hidden">
+      <div class="cake-container">
+        <!-- SVG Cake with Candles -->
+        <svg id="cake-svg" width="260" height="230" viewBox="0 0 260 230">
+          <!-- Cake plate -->
+          <ellipse cx="130" cy="210" rx="100" ry="18" fill="#bdbdbd"/>
+          <!-- Bottom tier -->
+          <rect x="40" y="140" width="180" height="55" rx="28" fill="#ffb347" stroke="#e07a5f" stroke-width="3"/>
+          <ellipse cx="130" cy="140" rx="90" ry="24" fill="#fffbe7"/>
+          <!-- Sprinkles on bottom tier icing -->
+          <circle cx="80" cy="145" r="2.5" fill="#ffd166"/>
+          <circle cx="110" cy="150" r="2.5" fill="#81c784"/>
+          <circle cx="160" cy="143" r="2.5" fill="#6ec6ff"/>
+          <circle cx="190" cy="147" r="2" fill="#ff4e50"/>
+          <circle cx="130" cy="155" r="2" fill="#ffb347"/>
+          <!-- Middle tier -->
+          <rect x="70" y="90" width="120" height="60" rx="20" fill="#f48fb1" stroke="#ad1457" stroke-width="2.5"/>
+          <ellipse cx="130" cy="90" rx="60" ry="18" fill="#fffbe7"/>
+          <!-- Sprinkles on middle tier icing -->
+          <circle cx="100" cy="95" r="2.5" fill="#ffd166"/>
+          <circle cx="130" cy="100" r="2.5" fill="#81c784"/>
+          <circle cx="150" cy="97" r="2.5" fill="#6ec6ff"/>
+          <circle cx="120" cy="105" r="2" fill="#ff4e50"/>
+          <circle cx="140" cy="107" r="2" fill="#ffb347"/>
+          <!-- Top tier -->
+          <rect x="100" y="50" width="60" height="48" rx="13" fill="#6ec6ff" stroke="#1976d2" stroke-width="2"/>
+          <ellipse cx="130" cy="50" rx="30" ry="10" fill="#fffbe7"/>
+          <!-- Sprinkles on top tier icing -->
+          <circle cx="120" cy="53" r="1.7" fill="#ffd166"/>
+          <circle cx="130" cy="56" r="1.7" fill="#81c784"/>
+          <circle cx="140" cy="54" r="1.7" fill="#ff4e50"/>
+          <!-- Candles on top tier -->
+          <g class="candles">
+            <!-- Candle 1 -->
+            <rect class="candle" x="112" y="28" width="7" height="22" rx="2.5" fill="#ff6f91"/>
+            <rect x="112" y="28" width="7" height="22" rx="2.5" fill="url(#stripes1)"/>
+            <ellipse class="flame" cx="115.5" cy="25" rx="3" ry="5.5" fill="#ffd700"/>
+            <!-- Candle 2 -->
+            <rect class="candle" x="125" y="24" width="7" height="26" rx="2.5" fill="#81c784"/>
+            <rect x="125" y="24" width="7" height="26" rx="2.5" fill="url(#stripes2)"/>
+            <ellipse class="flame" cx="128.5" cy="21" rx="3" ry="5.5" fill="#ffd700"/>
+            <!-- Candle 3 -->
+            <rect class="candle" x="138" y="28" width="7" height="22" rx="2.5" fill="#ffd166"/>
+            <rect x="138" y="28" width="7" height="22" rx="2.5" fill="url(#stripes3)"/>
+            <ellipse class="flame" cx="141.5" cy="25" rx="3" ry="5.5" fill="#ffd700"/>
+          </g>
+          <defs>
+            <linearGradient id="stripes1" x1="112" y1="28" x2="119" y2="50" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#fff" stop-opacity="0.7"/>
+              <stop offset="0.5" stop-color="#ff6f91" stop-opacity="0.7"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0.7"/>
+            </linearGradient>
+            <linearGradient id="stripes2" x1="125" y1="24" x2="132" y2="50" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#fff" stop-opacity="0.7"/>
+              <stop offset="0.5" stop-color="#81c784" stop-opacity="0.7"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0.7"/>
+            </linearGradient>
+            <linearGradient id="stripes3" x1="138" y1="28" x2="145" y2="50" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#fff" stop-opacity="0.7"/>
+              <stop offset="0.5" stop-color="#ffd166" stop-opacity="0.7"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0.7"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div id="blow-text">Make a wish and blow out the candles!</div>
+      </div>
+    </div>
+    <div id="birthday-message" class="hidden">
+      <h1>🎉 Happy Birthday Shravya! 🎂</h1>
+      <p class="wish">Wishing you a day filled with love, laughter, and unforgettable moments. May all your dreams come true and your year ahead be as wonderful as you are!</p>
+    </div>
+    <div class="gallery animated-gallery hidden">
+      <img src="bakki/1.jpg" alt="Birthday Photo 1">
+      <img src="bakki/2.jpg" alt="Birthday Photo 2">
+      <img src="bakki/3.jpg" alt="Birthday Photo 3">
+      <img src="bakki/4.jpg" alt="Birthday Photo 4">
+      <img src="bakki/5.jpg" alt="Birthday Photo 5">
+      <img src="bakki/6.jpg" alt="Birthday Photo 6">
+    </div>
+    <div class="friendship-gift-section">
+      <div class="friendship-quote">“Friendship is the golden thread that ties the heart of all the world.”</div>
+      <div class="gift-message">🎁 A special wishes from <b>Ashok</b> to you! 🎁</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
